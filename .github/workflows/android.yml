@@ -1,0 +1,31 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'  # Specify the Java version required for your project
+
+      - name: Set up Android SDK
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30  # Specify the API level required for your project
+          target: default
+          arch: x86_64
+          force-avd-creation: true
+          emulator-options: -no-window -gpu off
+
+      - name: Build APK
+        run: ./gradlew assembleRelease  # Adjust this command based on your project's build system
