@@ -3,7 +3,7 @@ name: Build Android APK
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - release  # Trigger the workflow on push to the release branch
 
 jobs:
   build:
