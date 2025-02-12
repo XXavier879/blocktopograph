@@ -29,3 +29,9 @@ jobs:
 
       - name: Build APK
         run: ./gradlew assembleRelease  # Adjust this command based on your project's build system
+
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: blocktopograph-apk
+          path: app/build/outputs/apk/release/app-release.apk  # Adjust the path if your APK is located elsewhere
